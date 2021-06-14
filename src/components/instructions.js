@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import api from '../services/api';
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import api from "../services/api";
 
 function Instructions(props) {
-  const [name, setName] = useState('');
+  let temp = {};
+  const [name, setName] = useState("");
   const [error, setError] = useState(false);
 
   const onSave = () => {
     if (name) {
       let flag = true;
-      api.get('/savedgames').then((response) => {
+      api.get("/savedgames").then((response) => {
         response.data.forEach((e) => {
           if (name === e.username) {
             flag = false;
-            props.history.push('/gamestart/' + e.id);
+            props.history.push("/gamestart/" + e.id);
           }
         });
         if (flag) {
           let id = uuidv4();
-          api.post('/savedgames', {
+
+          api.post("/savedgames", {
             id: id,
             username: name,
             values: { defusedcards: 0, unpickedcards: [] },
             scores: 0,
           });
-          props.history.push('/gamestart/' + id);
+          props.history.push("/gamestart/" + id);
         }
       });
     } else {
@@ -60,7 +63,7 @@ function Instructions(props) {
       <label>Username </label>
       <input
         className="m-1 p-1 shadow-sm form-control"
-        style={{ width: '25%' }}
+        style={{ width: "25%" }}
         placeholder="Name"
         required
         type="text"
@@ -69,7 +72,7 @@ function Instructions(props) {
           onsubmit = { onSave };
         }}
       />
-      {error ? <p style={{ color: 'red' }}>Username is required</p> : ''}
+      {error ? <p style={{ color: "red" }}>Username is required</p> : ""}
       <br />
       <button
         type="submit"

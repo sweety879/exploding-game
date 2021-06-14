@@ -1,0 +1,9 @@
+.bg-transperant {
+  background-color: transparent;
+}
+.background-img {
+  background-image: URL("https://res.cloudinary.com/dhbemnr0z/image/upload/v1623658729/Capture_o90rw1.png");
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
+}

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import './GameStart.css';
-import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import "./GameStart.css";
+import React, { useState, useEffect } from "react";
+import api from "../services/api";
 
 function GameStart(props) {
   const [currentCards, setCurrentCards] = useState([]);
@@ -9,11 +9,13 @@ function GameStart(props) {
   const [defuseCount, setDefuseCount] = useState(0);
   const [showcard, setShowcard] = useState(false);
   const [selected, setSelected] = useState(0);
+  const [message, setMessage] = useState("");
   let i,
     generateCards = [];
 
   useEffect(() => {
-    api.get('/savedgames/' + props.match.params.id).then((response) => {
+    setMessage("");
+    api.get("/savedgames/" + props.props.match.params.id).then((response) => {
       setSaved(response.data);
       //   console.log(
       //     response.data.values.unpickedcards,
@@ -30,23 +32,23 @@ function GameStart(props) {
           var index = Math.floor(Math.random() * 4 + 1);
           switch (index) {
             case 1:
-              generateCards.push({ id: i + 1, value: 'bomb' });
+              generateCards.push({ id: i + 1, value: "bomb" });
               break;
             case 2:
-              generateCards.push({ id: i + 1, value: 'shuffle' });
+              generateCards.push({ id: i + 1, value: "shuffle" });
               break;
             case 3:
-              generateCards.push({ id: i + 1, value: 'defuse' });
+              generateCards.push({ id: i + 1, value: "defuse" });
               break;
             case 4:
-              generateCards.push({ id: i + 1, value: 'cat' });
+              generateCards.push({ id: i + 1, value: "cat" });
               break;
             default:
           }
         }
         saved.values.unpickedcards = generateCards;
         setCurrentCards(generateCards);
-        api.put('/savedgames/' + props.match.params.id, saved);
+        api.put("/savedgames/" + saved.id, saved);
       }
     });
   }, []);
@@ -55,14 +57,15 @@ function GameStart(props) {
     let card = currentCards.filter((c) => c.id === id);
     let nextCards = currentCards.filter((c) => c.id !== card[0].id);
     switch (card[0].value) {
-      case 'bomb': {
+      case "bomb": {
         if (defuseCount > 0) {
           setCurrentCards(nextCards);
           setDefuseCount((prevCount) => prevCount - 1);
           saved.values.defusedcards = defuseCount - 1;
           saved.values.unpickedcards = nextCards;
         } else {
-          alert('YOU LOST THE GAME');
+          setMessage("You lost the game..!");
+
           setCurrentCards([]);
           saved.values.defusedcards = 0;
           saved.values.unpickedcards = [];
@@ -70,35 +73,37 @@ function GameStart(props) {
 
         break;
       }
-      case 'cat': {
+      case "cat": {
         setCurrentCards(nextCards);
         saved.values.defusedcards = defuseCount;
         saved.values.unpickedcards = nextCards;
         break;
       }
-      case 'defuse': {
+      case "defuse": {
         setDefuseCount((prevCount) => prevCount + 1);
         setCurrentCards(nextCards);
         saved.values.defusedcards = defuseCount + 1;
         saved.values.unpickedcards = nextCards;
         break;
       }
-      case 'shuffle': {
+      case "shuffle": {
         setDefuseCount(0);
+        setMessage("cards are shuffled");
+        setTimeout(() => setMessage(""), 1000);
         for (i = 0; i < 5; i++) {
           var index = Math.floor(Math.random() * 4 + 1);
           switch (index) {
             case 1:
-              generateCards.push({ id: i + 1, value: 'bomb' });
+              generateCards.push({ id: i + 1, value: "bomb" });
               break;
             case 2:
-              generateCards.push({ id: i + 1, value: 'shuffle' });
+              generateCards.push({ id: i + 1, value: "shuffle" });
               break;
             case 3:
-              generateCards.push({ id: i + 1, value: 'defuse' });
+              generateCards.push({ id: i + 1, value: "defuse" });
               break;
             case 4:
-              generateCards.push({ id: i + 1, value: 'cat' });
+              generateCards.push({ id: i + 1, value: "cat" });
               break;
             default:
           }
@@ -114,16 +119,16 @@ function GameStart(props) {
     }
 
     if (nextCards.length === 0) {
-      alert('YOU WON THE GAME');
-      console.log(saved.scores);
+      setMessage("Yaay..!You won");
+
       ++saved.scores;
-      console.log(saved.scores);
+
       saved.values.defusedcards = 0;
       saved.values.unpickedcards = [];
     }
     setSelected(0);
     setShowcard(false);
-    api.put('/savedgames/' + props.match.params.id, saved);
+    api.put("/savedgames/" + saved.id, saved);
   }
 
   return (
@@ -136,11 +141,11 @@ function GameStart(props) {
                 <div className="m-2 p-5 game-card-bomb shadow-sm d-flex flex-column justify-content-center text-center">
                   <b
                     style={{
-                      color: 'white',
-                      fontSize: '25px',
+                      color: "white",
+                      fontSize: "25px",
                     }}
                   >
-                    {item.value}{' '}
+                    {item.value}{" "}
                   </b>
                 </div>
               ) : (
@@ -158,6 +163,13 @@ function GameStart(props) {
             </div>
           ))}
         </div>
+        {message ? (
+          <p className="text-light p-5">
+            <b>{message}</b>
+          </p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

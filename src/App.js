@@ -1,13 +1,13 @@
-import Instructions from './components/instructions.js';
-import GameStart from './components/GameStart';
-import { Route, BrowserRouter } from 'react-router-dom';
+import Instructions from "./components/instructions.js";
+import GamePage from "./pages/gamePage.js";
+import { Route, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
         <Route path="/" exact component={Instructions} />
-        <Route path="/gamestart/:id" exact component={GameStart} />
+        <Route path="/gameStart/:id" exact component={GamePage} />
       </BrowserRouter>
     </div>
   );
