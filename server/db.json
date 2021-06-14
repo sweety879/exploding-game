@@ -1,0 +1,116 @@
+{
+  "savedgames": [
+    {
+      "id": "234567",
+      "username": "sweety",
+      "values": {
+        "defusedcards": 0,
+        "unpickedcards": [
+          {
+            "id": 1,
+            "value": "defuse"
+          },
+          {
+            "id": 2,
+            "value": "cat"
+          },
+          {
+            "id": 3,
+            "value": "cat"
+          },
+          {
+            "id": 4,
+            "value": "defuse"
+          },
+          {
+            "id": 5,
+            "value": "defuse"
+          }
+        ]
+      },
+      "scores": 1
+    },
+    {
+      "id": "f91058b3-b43d-4ec1-8a61-1364291700ce",
+      "username": "nikitha",
+      "values": {
+        "defusedcards": 0,
+        "unpickedcards": [
+          {
+            "id": 1,
+            "value": "bomb"
+          },
+          {
+            "id": 2,
+            "value": "bomb"
+          },
+          {
+            "id": 4,
+            "value": "cat"
+          },
+          {
+            "id": 5,
+            "value": "shuffle"
+          }
+        ]
+      },
+      "scores": 0
+    },
+    {
+      "id": "359c57a9-9ae2-4850-ae12-7e1d4e15657e",
+      "username": "sanki",
+      "values": {
+        "defusedcards": 0,
+        "unpickedcards": [
+          {
+            "id": 1,
+            "value": "cat"
+          },
+          {
+            "id": 2,
+            "value": "bomb"
+          },
+          {
+            "id": 3,
+            "value": "defuse"
+          },
+          {
+            "id": 4,
+            "value": "cat"
+          },
+          {
+            "id": 5,
+            "value": "bomb"
+          }
+        ]
+      },
+      "scores": 0
+    },
+    {
+      "id": "d543c8ee-4383-4277-ae07-eae6bda47c38",
+      "username": "nix",
+      "values": {
+        "defusedcards": 1,
+        "unpickedcards": [
+          {
+            "id": 1,
+            "value": "cat"
+          },
+          {
+            "id": 2,
+            "value": "defuse"
+          },
+          {
+            "id": 3,
+            "value": "cat"
+          },
+          {
+            "id": 5,
+            "value": "shuffle"
+          }
+        ]
+      },
+      "scores": 0
+    }
+  ]
+}
