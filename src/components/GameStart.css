@@ -21,14 +21,14 @@
 .game-card-back {
   height: 300px;
   width: 150px;
-  background-image: URL('https://res.cloudinary.com/dzf4jova5/image/upload/c_scale,h_300,w_150/v1623589809/explode_kitten_ybxnin.jpg');
+  background-image: URL("https://res.cloudinary.com/dzf4jova5/image/upload/c_scale,h_300,w_150/v1623589809/explode_kitten_ybxnin.jpg");
 }
 
 .background {
   background-size: cover;
-  background-image: URL('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v462-n-130-textureidea_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9465282a2b0a375f4f5b120d7bbad882');
+  background-image: URL("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v462-n-130-textureidea_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9465282a2b0a375f4f5b120d7bbad882");
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 .card-flip > div {
   backface-visibility: hidden;
